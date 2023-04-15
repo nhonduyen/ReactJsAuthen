@@ -16,15 +16,15 @@ namespace Ordering.Infrastructure.Repositories.Query
         {
         }
 
-        public async Task<Customer> GetByIdAsync(Guid id)
+        public async Task<Customer> GetByIdAsync(Guid id, CancellationToken ct = default)
         {
-            var customer = await base.FindByConditionAsync(x => x.Id == id);
+            var customer = await base.FindByConditionAsync(x => x.Id == id, ct);
             return customer.FirstOrDefault();
         }
 
-        public async Task<Customer> GetCustomerByEmail(string email)
+        public async Task<Customer> GetCustomerByEmail(string email, CancellationToken ct = default)
         {
-            var customer = await base.FindByConditionAsync(x => x.Email == email);
+            var customer = await base.FindByConditionAsync(x => x.Email == email, ct);
             return customer.FirstOrDefault();
         }
     }

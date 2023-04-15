@@ -12,9 +12,9 @@ namespace Ordering.Infrastructure.Services
         private readonly string _key;
         private readonly string _issuer;
         private readonly string _audience;
-        private readonly string _expiryMinutes;
+        private readonly int _expiryMinutes;
 
-        public TokenGenerator(string key, string issueer, string audience, string expiryMinutes)
+        public TokenGenerator(string key, string issueer, string audience, int expiryMinutes)
         {
             _key = key;
             _issuer = issueer;

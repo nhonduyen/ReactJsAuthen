@@ -21,15 +21,15 @@ namespace Ordering.Infrastructure.Repositories.Query.Base
             _table = _context.Set<T>();
         }
 
-        public async Task<IReadOnlyList<T>> GetAllAsync()
+        public async Task<IReadOnlyList<T>> GetAllAsync(CancellationToken ct = default)
         {
-            var results = await _context.Set<T>().AsNoTracking().ToListAsync();
+            var results = await _context.Set<T>().AsNoTracking().ToListAsync(ct);
             return results;
         }
 
-        public async Task<IReadOnlyList<T>> FindByConditionAsync(Expression<Func<T, bool>> expression)
+        public async Task<IReadOnlyList<T>> FindByConditionAsync(Expression<Func<T, bool>> expression, CancellationToken ct = default)
         {
-            var results = await _context.Set<T>().AsNoTracking().Where(expression).ToListAsync();
+            var results = await _context.Set<T>().AsNoTracking().Where(expression).ToListAsync(ct);
             return results;
         }
     }
