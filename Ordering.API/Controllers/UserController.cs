@@ -28,6 +28,7 @@ namespace Ordering.API.Controllers
             _logger = logger;
         }
 
+        [AllowAnonymous]
         [HttpPost("Create")]
         [ProducesDefaultResponseType(typeof(bool))]
         public async Task<ActionResult> CreateUser(CreateUserCommand command, CancellationToken ct = default)

@@ -5,6 +5,7 @@ using Ordering.Application.Commands.Customers.Create;
 using Ordering.Application.Commands.User.Create;
 using System.Reflection;
 using MediatR;
+using Microsoft.AspNetCore.DataProtection;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -27,6 +28,9 @@ builder.Services.AddCors(c =>
 {
     c.AddPolicy("CorsPolicy", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
+
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(Path.GetTempPath()));
 
 var app = builder.Build();
 

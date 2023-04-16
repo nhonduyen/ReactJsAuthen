@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Ordering.Application.Common.Exceptions;
 using Ordering.Application.Common.Interfaces;
 using Ordering.Infrastructure.Identity;
@@ -12,13 +13,15 @@ namespace Ordering.Infrastructure.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ILogger<IdentityService> _logger;
 
-        public IdentityService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager)
+        public IdentityService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager, ILogger<IdentityService> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _roleManager = roleManager;
+            _logger = logger;
         }
 
         public async Task<bool> AssignUserToRole(string userName, IList<string> roles)
@@ -58,12 +61,20 @@ namespace Ordering.Infrastructure.Services
 
             if (!result.Succeeded)
             {
+                foreach (var err in result.Errors)
+                {
+                    _logger.LogError($"{err.Code} : {err.Description}");
+                }
                 throw new ValidationException(result.Errors);
             }
 
             var addUserRole = await _userManager.AddToRolesAsync(user, roles);
             if (!addUserRole.Succeeded)
             {
+                foreach (var err in result.Errors)
+                {
+                    _logger.LogError($"{err.Code} : {err.Description}");
+                }
                 throw new ValidationException(addUserRole.Errors);
             }
             return (result.Succeeded, user.Id);

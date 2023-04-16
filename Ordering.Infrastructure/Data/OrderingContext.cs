@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Odering.Core.Entities;
+using Ordering.Infrastructure.Identity;
 
 namespace Ordering.Infrastructure.Data
 {
-    public class OrderingContext : DbContext
+    public class OrderingContext : IdentityDbContext<ApplicationUser>
     {
         public OrderingContext(DbContextOptions<OrderingContext> options) : base(options)
         {
