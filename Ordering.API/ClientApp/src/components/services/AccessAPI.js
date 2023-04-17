@@ -2,119 +2,96 @@ import SessionManager from "../Auth/SessionManager";
 import { BASE_URL } from "./Settings";
 
 
-export function getData(endPoint) {
+export async function getData(endPoint) {
 
-    let token = SessionManager.getToken();
+    const token = SessionManager.getToken();
 
-    let payload = {
+    const payload = {
         method: 'GET',
+        mode: 'cors',
         headers: {
             "access-control-allow-origin": "*",
             'Accept': 'application/json',
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json; charset=UTF-8',
             'Authorization': 'Bearer ' + token
-        },
+        }
     }
-    return fetch(BASE_URL + endPoint, payload)
-        .then(function (response) {
-            if (!response.ok) {
-                throw Error(response.statusText);
-            }
-            return response.json();
-        }).then(function (result) {
-            return result;
-        }).catch(function (error) {
-            console.log(error);
-        });
+    const response = await fetch(BASE_URL + endPoint, payload)
+
+    return response.json()
 }
 
-export function postDataForLogin(type, userData) {
-    //let BaseURL = "https://localhost:7142/";
-    let payload = {
+export async function postDataForLogin(type, userData) {
+    const payload = {
         method: 'POST',
+        mode: 'cors',
         headers: {
             "access-control-allow-origin": "*",
             'Content-Type': 'application/json'
         },
+        redirect: 'follow',
         body: JSON.stringify(userData)
 
     }
-    return fetch(BASE_URL + type, payload)
-        .then(function (response) {
-            return response.json();
-        }).then(function (result) {
-            return result;
-        }).catch(function (error) {
-            console.log(error);
-        });
+    const response = await fetch(BASE_URL + type, payload)
+    return response.json()
 }
 
-export function postData(endPoint, inputObj) {
-    let token = SessionManager.getToken();
-    let payload = {
+export async function postData(endPoint, inputObj) {
+    const token = SessionManager.getToken();
+    const payload = {
         method: 'POST',
+        mode: 'cors',
         headers: {
             "access-control-allow-origin": "*",
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token
         },
+        redirect: 'follow',
         body: JSON.stringify(inputObj)
 
     }
-    return fetch(BASE_URL + endPoint, payload)
-        .then(function (response) {
-            return response.json();
-        }).then(function (result) {
-            return result;
-        }).catch(function (error) {
-            console.log(error);
-        });
+
+    const response = await fetch(BASE_URL + endPoint, payload)
+    return response.json()
 }
 
-export function deleteData(endPoint) {
-    let token = SessionManager.getToken();
-    let payload = {
+export async function deleteData(endPoint, data = {}) {
+    const token = SessionManager.getToken();
+    const payload = {
         method: 'DELETE',
+        mode: 'cors',
         headers: {
             "access-control-allow-origin": "*",
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token
         },
+        redirect: 'follow',
+        body: JSON.stringify(data)
     }
-    return fetch(BASE_URL + endPoint, payload)
-        .then(function (response) {
-            if (!response.ok) {
-                throw Error(response.statusText);
-            }
-            return response.json();
-        }).then(function (result) {
-            return result;
-        }).catch(function (error) {
-            console.log(error);
-        });
+
+    const response = await fetch(BASE_URL + endPoint, payload)
+    return response.json()
 }
 
-export function putData(endPoint, obj) {
-    let token = SessionManager.getToken();
-    let payload = {
+export async function putData(endPoint, obj) {
+    const token = SessionManager.getToken();
+    const payload = {
         method: 'PUT',
+        mode: 'cors',
         headers: {
             "access-control-allow-origin": "*",
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token
         },
+        redirect: 'follow',
         body: JSON.stringify(obj)
 
     }
-    return fetch(BASE_URL + endPoint, payload)
-        .then(function (response) {
-            return response.json();
-        }).then(function (result) {
-            return result;
-        }).catch(function (error) {
-            console.log(error);
-        });
+
+    const response = await fetch(BASE_URL + endPoint, payload)
+    return response.json()
 }

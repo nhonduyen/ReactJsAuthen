@@ -28,7 +28,6 @@ export default class App extends Component {
   static displayName = App.name;
 
   render() {
-    console.log(SessionManager.getToken())
     return SessionManager.getToken() ? (
       <Layout>
         <Route exact path="/" component={Home} />

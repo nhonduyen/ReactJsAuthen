@@ -66,36 +66,36 @@ export class DeleteUser extends Component {
                 <h3>Are you sure you want to delete this?</h3>
                 <div>
                     <h4>User Information</h4>
-                    <dl class="row">
-                        <dt class="col-sm-2">
+                    <dl className="row">
+                        <dt className="col-sm-2">
                             Full Name:
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd className="col-sm-10">
                             {this.state.fullName}
                         </dd>
                     </dl>
 
-                    <dl class="row">
-                        <dt class="col-sm-2">
+                    <dl className="row">
+                        <dt className="col-sm-2">
                             User Name:
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd className="col-sm-10">
                             {this.state.userName}
                         </dd>
                     </dl>
 
-                    <dl class="row">
-                        <dt class="col-sm-2">
+                    <dl className="row">
+                        <dt className="col-sm-2">
                             Email:
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd className="col-sm-10">
                             {this.state.email}
                         </dd>
                     </dl>
 
                     <form onSubmit={this.onConfirmation}>
                         <input type="hidden" asp-for="Id" />
-                        <button type="submit" class="btn btn-danger">Delete</button> |
+                        <button type="submit" className="btn btn-danger">Delete</button> |
                         <button onClick={this.onCancel} className="btn btn-primary">Back to List</button>
                     </form>
                 </div>

@@ -68,36 +68,36 @@ export class Delete extends Component {
                 <h3>Are you sure you want to delete this?</h3>
                 <div>
                     <h4>Customer</h4>
-                    <dl class="row">
-                        <dt class="col-sm-2">
+                    <dl className="row">
+                        <dt className="col-sm-2">
                             First Name:
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd className="col-sm-10">
                             {this.state.firstName}
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt className="col-sm-2">
                             Last Name:
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd className="col-sm-10">
                             {this.state.lastName}
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt className="col-sm-2">
                             Email:
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd className="col-sm-10">
                             {this.state.email}
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt className="col-sm-2">
                             Contact Number:
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd className="col-sm-10">
                             {this.state.contactNumber}
                         </dd>
 
-                        <dt class="col-sm-2">
+                        <dt className="col-sm-2">
                             Address:
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd className="col-sm-10">
                             {this.state.address}
                         </dd>
 
@@ -105,7 +105,7 @@ export class Delete extends Component {
 
                     <form onSubmit={this.onConfirmation}>
                         <input type="hidden" asp-for="Id" />
-                        <button type="submit" class="btn btn-danger">Delete</button> |
+                        <button type="submit" className="btn btn-danger">Delete</button> |
                         <button onClick={this.onCancel} className="btn btn-primary">Back to List</button>
                     </form>
                 </div>

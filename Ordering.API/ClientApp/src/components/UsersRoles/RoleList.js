@@ -18,7 +18,7 @@
 
                         <li key={index}>
                             <input type="checkbox" checked={isExists(role.roleName)} value={role.roleName} onChange={props.onChange} ></input>
-                            <span class="input-group-addon">&nbsp;</span>
+                            <span className="input-group-addon">&nbsp;</span>
                             <label>{role.roleName}</label>
                         </li>
                     )
